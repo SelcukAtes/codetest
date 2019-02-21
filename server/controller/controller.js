@@ -11,7 +11,7 @@ user.getUser = (req, res, next) => {
 
 user.createUser = (req, res, next) => {
 	UserModal.create(
-		{ name: req.body.name, country: req.body.country, features: req.body.features },
+		{ name: req.body.name, country: req.body.country, features: req.body.features, img: req.file.path },
 		(err, newUser) => {
 			if (err) return res.status(500).send(err);
 			res.status(200).send(newUser);
@@ -35,7 +35,8 @@ user.getUserId = (req, res, next) => {
 		res.status(200).send(getUserOne);
 	});
 };
-user.updateUser = (req, res, nest) => {
+
+user.updateUser = (req, res, next) => {
 	UserModal.findOneAndUpdate(
 		{ name: req.body.name, country: req.body.country, features: req.body.features },
 		(err, userUpdate) => {
