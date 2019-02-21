@@ -20,6 +20,7 @@ app.get('/express_backend', (req, res) => {
 
 app.get('/getUser', controller.getUser);
 app.post('/createUser', controller.createUser);
+app.delete('/deleteUser', controller.deleteUser);
 
 const port = process.env.PORT || 5000;
 
