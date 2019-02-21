@@ -9,4 +9,14 @@ user.getUser = (req, res, next) => {
 	});
 };
 
+user.createUser = (req, res, next) => {
+	UserModal.create(
+		{ name: req.body.name, country: req.body.country, features: req.body.features },
+		(err, newUser) => {
+			if (err) return res.status(500).send(err);
+			res.status(200).send(newUser);
+		}
+	);
+};
+
 module.exports = user;

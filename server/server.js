@@ -19,6 +19,7 @@ app.get('/express_backend', (req, res) => {
 });
 
 app.get('/getUser', controller.getUser);
+app.post('/createUser', controller.createUser);
 
 const port = process.env.PORT || 5000;
 
