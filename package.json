@@ -1,0 +1,26 @@
+{
+	"name": "codetest",
+	"version": "1.0.0",
+	"description": "## Overall Requirements Create an application to feature one of your extracurricular interests. Select an interest that has items of alike members (Stamps, Books, Songs, etc). Please use this as a chance to showcase your personality by selecting a category of things you enjoy.",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SelcukAtes/codetest.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/SelcukAtes/codetest/issues"
+	},
+	"homepage": "https://github.com/SelcukAtes/codetest#readme",
+	"dependencies": {
+		"express": "^4.16.4"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.10"
+	}
+}
