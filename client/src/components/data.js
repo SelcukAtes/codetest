@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Fighter from './fighter';
+
 class Data extends Component {
 	constructor(props) {
 		super(props);
@@ -7,10 +8,10 @@ class Data extends Component {
 			fighters: null,
 			current: null
 		};
-
-		this.getData = this.getData.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 		this.handlePrevious = this.handlePrevious.bind(this);
 		this.handleNext = this.handleNext.bind(this);
+		this.getData = this.getData.bind(this);
 	}
 
 	componentDidMount() {
@@ -21,10 +22,27 @@ class Data extends Component {
 		fetch('/getUser')
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
 				this.setState({
-					fighters: data
+					fighters: data,
+					current: 0
 				});
+			})
+			.catch((err) => console.log(err));
+	}
+
+	handleDelete(e) {
+		const id = { _id: e.target.value };
+		fetch('/deleteUser', {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(id)
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				this.handleNext();
+				this.getData();
 			})
 			.catch((err) => console.log(err));
 	}
@@ -52,7 +70,12 @@ class Data extends Component {
 		return (
 			<div>
 				{selected && (
-					<Fighter selected={selected} handlePrevious={this.handlePrevious} handleNext={this.handleNext} />
+					<Fighter
+						selected={selected}
+						handlePrevious={this.handlePrevious}
+						handleNext={this.handleNext}
+						handleDelete={this.handleDelete}
+					/>
 				)}
 			</div>
 		);
