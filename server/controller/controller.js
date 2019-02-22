@@ -29,7 +29,8 @@ user.createUser = (req, res, next) => {
 user.deleteUser = (req, res, next) => {
 	UserModal.deleteOne({ _id: req.body._id }, (err, userDelete) => {
 		if (err) return res.status(500).send(err);
-		res.status(200).send(userDelete);
+		res.locals.deleted = userDelete;
+		return next();
 	});
 };
 

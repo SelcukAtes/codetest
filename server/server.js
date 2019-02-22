@@ -60,7 +60,9 @@ app.get('/getUser', controller.getUser);
 app.post('/createUser', upload.single('img'), controller.createUser);
 
 // delete user route
-app.delete('/deleteUser', controller.deleteUser);
+app.delete('/deleteUser', controller.deleteUser, (req, res) => {
+	res.status(200).json(res.locals.deleted);
+});
 
 /*
 *=============================================
