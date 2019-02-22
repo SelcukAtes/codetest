@@ -1,4 +1,5 @@
 import React from 'react';
+import AddFighter from './addFighter';
 
 const Fighter = (props) => {
 	const { firstName, lastName, img, _id } = props.selected;
@@ -14,6 +15,7 @@ const Fighter = (props) => {
 			<button value={`${_id}`} onClick={(e) => handleDelete(e)}>
 				Delete
 			</button>
+			<AddFighter />
 		</div>
 	);
 };
