@@ -6,8 +6,9 @@ class AddFighter extends Component {
 		super(props);
 		this.state = {
 			selectedFile: null,
-			firstName: '',
-			lastName: ''
+			firstName: 'FirstName',
+			lastName: 'LastName',
+			features: 'Features'
 		};
 	}
 
@@ -22,6 +23,7 @@ class AddFighter extends Component {
 		fd.append('img', this.state.selectedFile, this.state.selectedFile.name);
 		fd.append('firstName', this.state.firstName);
 		fd.append('lastName', this.state.lastName);
+		fd.append('features', this.state.features);
 		axios.post('/createUser', fd).then((res) => {
 			console.log(res);
 		});
@@ -35,11 +37,16 @@ class AddFighter extends Component {
 		this.setState({ lastName: e.target.value });
 	};
 
+	handleFeaturesChange = (e) => {
+		this.setState({ features: e.target.value });
+	};
+
 	render() {
 		return (
 			<form onSubmit={this.fileUploadHandler}>
 				<input type="text" value={this.state.firstName} onChange={(e) => this.handleFirstChange(e)} />
 				<input type="text" value={this.state.lastName} onChange={(e) => this.handleLastChange(e)} />
+				<input type="text" value={this.state.features} onChange={(e) => this.handleFeaturesChange(e)} />
 				<input type="file" onChange={this.fileSelectedHandler} />
 				<button type="submit">Upload</button>
 			</form>
