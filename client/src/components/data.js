@@ -8,12 +8,22 @@ class Data extends Component {
 			fighters: null,
 			current: null
 		};
+		/*
+    *=============================================
+    *    BINDING
+    *=============================================
+    */
 		this.handleDelete = this.handleDelete.bind(this);
 		this.handlePrevious = this.handlePrevious.bind(this);
 		this.handleNext = this.handleNext.bind(this);
 		this.getData = this.getData.bind(this);
 	}
 
+	/*
+  *=============================================
+  *    FETCH DATA FROM DATABASE
+  *==============================================
+  */
 	componentDidMount() {
 		this.getData();
 	}
@@ -30,6 +40,7 @@ class Data extends Component {
 			.catch((err) => console.log(err));
 	}
 
+	// Delete the fighters
 	handleDelete(e) {
 		const id = { _id: e.target.value };
 		fetch('/deleteUser', {
