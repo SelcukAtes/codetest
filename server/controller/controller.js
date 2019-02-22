@@ -1,7 +1,12 @@
 const UserModal = require('./../modal/userModal');
 
 const user = {};
-
+/*
+*=============================================
+*       MIDDLEWARE FOR CRUD OPERATIONS
+*=============================================
+*/
+// getUser middleware
 user.getUser = (req, res, next) => {
 	UserModal.find({}, (err, userAll) => {
 		if (err) return console.log('err', err);
@@ -9,9 +14,10 @@ user.getUser = (req, res, next) => {
 	});
 };
 
+// createUser middleware
 user.createUser = (req, res, next) => {
 	UserModal.create(
-		{ name: req.body.name, country: req.body.country, features: req.body.features, img: req.file.path },
+		{ firstName: req.body.firstName, lastName: req.body.lastName, features: req.body.features, img: req.file.path },
 		(err, newUser) => {
 			if (err) return res.status(500).send(err);
 			res.status(200).send(newUser);
@@ -19,14 +25,15 @@ user.createUser = (req, res, next) => {
 	);
 };
 
+// DeleteUser Middleware
 user.deleteUser = (req, res, next) => {
-	console.log(req.body);
-	UserModal.deleteOne({ name: req.body.name }, (err, userDelete) => {
+	UserModal.deleteOne({ _id: req.body._id }, (err, userDelete) => {
 		if (err) return res.status(500).send(err);
 		res.status(200).send(userDelete);
 	});
 };
 
+// GetUserId middleware
 user.getUserId = (req, res, next) => {
 	UserModal.findById({ _id: req.body._id }, (err, getUserOne) => {
 		if (err) {
@@ -36,9 +43,10 @@ user.getUserId = (req, res, next) => {
 	});
 };
 
+// Update middleware
 user.updateUser = (req, res, next) => {
 	UserModal.findOneAndUpdate(
-		{ name: req.body.name, country: req.body.country, features: req.body.features },
+		{ firstName: req.body.firstName, lastName: req.body.lastName, features: req.body.features },
 		(err, userUpdate) => {
 			if (err) return res.status(500).send(err);
 			res.status(200).send(userUpdate);
