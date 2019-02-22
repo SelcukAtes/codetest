@@ -31,6 +31,13 @@ mongoose.connect('mongodb://user1:abc123@ds141815.mlab.com:41815/takehomebegin',
 	console.log('I connected to db');
 });
 
+// CORS
+app.use(function(req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	next();
+});
+
 // Use Statements
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
